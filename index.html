@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LSDI</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    button {
+      margin-bottom: 1rem;
+      border: 0.1rem solid black;
+      width: 4rem;
+      height: 2rem;
+      background-color: transparent;
+    }
+
+    input {
+      margin-bottom: 1rem;
+      background-color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>LocalStorage Data Interface</h1>
+  <span>Import: <input type="file"/></span>
+  <span>Enter &nbsp;Key : <input type="text"></span>
+  <span>Enter Pair : <input type="text"></span>
+  <button>Export</button>
+</body>
+
+</html>
