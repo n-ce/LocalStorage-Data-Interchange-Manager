@@ -9,29 +9,39 @@
 </head>
 
 <body class="container" align="center">
-  
+
   <h2>
     <i>LocalStorage Data Interface</i>
   </h2>
-  
+
   <details>
     <summary role="button" class="contrast">Create & Export</summary>
     <input placeholder="Enter Data Value 1">
     <input placeholder="Enter Data Value 2">
-    
+
     <button class="contrast outline" onclick="Push()">Push a new or override existing value</button>
     <button class="outline" onclick="Export()">EXPORT</button>
   </details>
-  
+
   <details>
     <summary role="button" class="contrast">Import Existing</summary>
-    <input type="file" onchange="loadFile(this.files[0])">
+    <input type="file" onchange="Import(this.files[0])">
   </details>
-  
+
   <article>
-    Dataset Empty
+    <table role="grid">
+      <thead>
+        <tr>
+          <th scope="col">Value 1</th>
+          <th scope="col">Value 2</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
   </article>
-  
+
   <script src="script.js"></script>
 </body>
 
