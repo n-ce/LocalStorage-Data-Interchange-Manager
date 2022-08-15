@@ -1,37 +1,39 @@
 const input = document.getElementsByTagName('input');
-const btn = document.getElementsByTagName('button')[0];
-const p = document.getElementsByTagName('p');
-
+const display = document.getElementsByTagName('article')[0];
 let obj = [];
 
-btn.addEventListener('click', () => {
-  
+
+let Push = () => {
   if (input[0].value !== '' && input[1].value !== '') {
-    
-    obj = [{ "id": "1", "key": `${input[0].value}`, "pair": `${input[1].value}` }];
-    
-    const textToBLOB = new Blob([obj], { type: 'text/json' });
+
+    obj.push(`{ "val1": "${input[0].value}", "val2": "${input[1].value}"}`);
+    display.innerHTML = obj;
+  }
+}
+
+let Export = () => {
+  if (obj != '') {
+    const textToBLOB = new Blob(['[' + obj + ']'], { type: 'application/json' });
 
     let newLink = document.createElement("a");
 
-    newLink.download = 'Note.json';
+    newLink.download = `data_${Math.pow(Math.floor(Math.random() * 10), Math.floor(Math.random() * 10))}.json`;
 
     if (window.webkitURL != null) {
       newLink.href = window.webkitURL.createObjectURL(textToBLOB);
     }
-    
+
     else {
       newLink.href = window.URL.createObjectURL(textToBLOB);
       newLink.style.display = "none";
       document.body.appendChild(newLink);
     }
-    
+
     newLink.click();
   }
-});
+}
 
 async function loadFile(file) {
-  obj.value = await file.text();
-  p[0].innerText = 'key: ' + obj[0].key;
-  p[1].innerText = 'pair: ' + obj[0].pair;
+  obj.push(JSON.parse(await file.text()));
+  display.innerHTML = obj;
 }
