@@ -32,10 +32,20 @@ let Export = () => {
     newLink.click();
   }
 }
-
 let Import = async file => {
   arr = arr.concat(JSON.parse(await file.text()));
   for (const x of arr) {
     table.innerHTML = `<tr><td>${x.val1}</td><td>${x.val2}</td></tr>`;
   }
+}
+
+
+ // you can loop through array in which you are pushing your object.
+// In first input whenever you write the value which is already in array and writting second value change then call this function.
+let ChangeVaL2=(val1,val2)=>{
+  arr.forEach((element)=>{
+    if(element.val1===val1){
+      element.val2=val2;
+    }
+  });
 }
