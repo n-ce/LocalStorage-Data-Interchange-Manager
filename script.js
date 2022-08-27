@@ -22,12 +22,9 @@ let update = (v1, v2, v3) => {
   }
 }
 
-let Push = () => {
-  if (input[0].value != '') {
-    obj = {
-      val1: input[0].value,
-      val2: input[1].value
-    };
+let Push = (m, n) => {
+  if (m != '') {
+    obj = { val1: m, val2: n };
     n = 0;
     arr.forEach((e, i) => {
       e.val1 == obj.val1 ?

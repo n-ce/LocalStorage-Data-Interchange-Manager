@@ -16,10 +16,10 @@
 
   <details>
     <summary role="button" class="contrast">Create & Export</summary>
-    <input placeholder="Enter Data Value 1" required>
-    <input placeholder="Enter Data Value 2" required>
+    <input id="x" placeholder="Enter Data Value 1" required>
+    <input id="y" placeholder="Enter Data Value 2" required>
 
-    <button onclick="Push()" class="contrast outline">SUBMIT</button>
+    <button onclick="Push(x.value,y.value)" class="contrast outline">SUBMIT</button>
 
     <button class="outline" onclick="Export()">EXPORT</button>
   </details>
