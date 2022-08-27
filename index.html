@@ -16,10 +16,11 @@
 
   <details>
     <summary role="button" class="contrast">Create & Export</summary>
-    <input placeholder="Enter Data Value 1">
-    <input placeholder="Enter Data Value 2">
+    <input placeholder="Enter Data Value 1" required>
+    <input placeholder="Enter Data Value 2" required>
 
-    <button class="contrast outline" onclick="Push()">Push a new or override existing value</button>
+    <button onclick="Push()" class="contrast outline">SUBMIT</button>
+
     <button class="outline" onclick="Export()">EXPORT</button>
   </details>
 
@@ -36,12 +37,10 @@
           <th scope="col">Value 2</th>
         </tr>
       </thead>
-      <tbody>
-
-      </tbody>
+      <tbody></tbody>
     </table>
+    <button onclick="localStorage.clear();location.reload()">Clear & Reset</button>
   </article>
-
   <script src="script.js"></script>
 </body>
 
