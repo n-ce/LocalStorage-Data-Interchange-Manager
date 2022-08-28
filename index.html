@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LSDI</title>
+  <title>LSJDI</title>
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 </head>
 
 <body class="container" align="center">
 
   <h2>
-    <i>LocalStorage Data Interface</i>
+    <i>LocalStorage JSON Data Interface</i>
   </h2>
 
   <details>
@@ -26,7 +26,7 @@
 
   <details>
     <summary role="button" class="contrast">Import Existing</summary>
-    <input type="file" onchange="Import(this.files[0])">
+    <input type="file" onchange="(async () => {Import(await this.files[0].text())})()">
   </details>
 
   <article>
