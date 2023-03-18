@@ -2,46 +2,69 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LSJDI</title>
-  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LSJD.im</title>
+	<style>
+		thead {
+			background-color: var(--primary);
+		}
+
+		b {
+			color: white
+		}
+
+		a[role="button"] {
+			padding: 0 0.4rem 0 0.4rem;
+			font-weight: bold;
+		}
+	</style>
+	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 </head>
 
-<body class="container" align="center">
+<body class="container">
 
-  <h2>
-    <i>LocalStorage JSON Data Interface</i>
-  </h2>
+	<hgroup>
+		<h2>LSJD.im</h2>
+		<h3>Local Storage JSON data interchange manager.</h3>
+	</hgroup>
 
-  <details>
-    <summary role="button" class="contrast">Create & Export</summary>
-    <input id="x" placeholder="Enter Data Value 1" required>
-    <input id="y" placeholder="Enter Data Value 2" required>
+	<details>
+		<summary>Create New or Update</summary>
+		<form>
+			<input id="inputKey" placeholder="Enter Data Key" required>
+			<input id="inputVal" placeholder="Enter Data Value" required>
+			<button type="submit" class="contrast outline">SUBMIT</button>
+		</form>
+	</details>
 
-    <button onclick="Push(x.value,y.value)" class="contrast outline">SUBMIT</button>
+	<details>
+		<summary>Import Existing</summary>
+		<input type="file" id="importBtn">
+	</details>
 
-    <button class="outline" onclick="Export()">EXPORT</button>
-  </details>
 
-  <details>
-    <summary role="button" class="contrast">Import Existing</summary>
-    <input type="file" onchange="(async () => {Import(await this.files[0].text())})()">
-  </details>
+	<table role="grid">
+		<!--<caption>Data Saved In Local Storage</caption>-->
+		<thead>
+			<tr>
+				<th><b>Key</b></th>
+				<th><b>Value</b></th>
+				<th width="1rem"></th>
+			</tr>
+		</thead>
+		<tbody id="table"></tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3"><a role="button" href="#" id="eraseAllBtn" class="contrast">Erase All</button></td>
+			</tr>
+		</tfoot>
+	</table>
 
-  <article>
-    <table role="grid">
-      <thead>
-        <tr>
-          <th scope="col">Value 1</th>
-          <th scope="col">Value 2</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <button onclick="localStorage.clear();location.reload()">Clear & Reset</button>
-  </article>
-  <script src="script.js"></script>
+
+	<button id="exportBtn">EXPORT</button>
+
+	<script src="main.js"></script>
 </body>
 
 </html>
