@@ -18,9 +18,11 @@ const insert = (key, val) => {
 	eraseBtn.href = '#';
 	eraseBtn.setAttribute('role', 'button');
 	eraseBtn.addEventListener('click', (event) => {
+		// const a = performance.now();
+		table.deleteRow(event.target.parentNode.parentNode.rowIndex - 1);
+		// table.deleteRow([...data].findIndex(e => e[0] === key));
+		// console.log((performance.now() - a).toFixed(2) + 'ms');
 		data.delete(key);
-		// table.deleteRow(event.target.parentNode.parentNode.rowIndex);
-		table.deleteRow(lsData.findIndex(e => e[0] === key));
 		localStorage.setItem('data', JSON.stringify([...data]));
 	});
 
@@ -28,7 +30,7 @@ const insert = (key, val) => {
 }
 const update = (key, value) => {
 	data.has(key) ?
-		table.rows[lsData.findIndex(k => k[0] === key)].cells[1].textContent = value :
+		table.rows[[...data].findIndex(k => k[0] === key)].cells[1].textContent = value :
 		insert(key, value);
 
 	data.set(key, value);
@@ -73,4 +75,4 @@ document.getElementById('exportBtn').addEventListener('click', () => {
 		}
 		newLink.click();
 	}
-})
+});
