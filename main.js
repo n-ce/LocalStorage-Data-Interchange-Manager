@@ -16,18 +16,17 @@ const insert = (key, val) => {
 
 	eraseBtn.textContent = 'x';
 	eraseBtn.href = '#';
-	eraseBtn.setAttribute('role', 'button');
+	eraseBtn.role = 'button';
 	eraseBtn.addEventListener('click', (event) => {
-		// const a = performance.now();
 		table.deleteRow(event.target.parentNode.parentNode.rowIndex - 1);
-		// table.deleteRow([...data].findIndex(e => e[0] === key));
-		// console.log((performance.now() - a).toFixed(2) + 'ms');
 		data.delete(key);
 		localStorage.setItem('data', JSON.stringify([...data]));
 	});
 
 	newBtn.appendChild(eraseBtn);
 }
+
+
 const update = (key, value) => {
 	data.has(key) ?
 		table.rows[[...data].findIndex(k => k[0] === key)].cells[1].textContent = value :
@@ -50,7 +49,7 @@ document.getElementById('eraseAllBtn').addEventListener('click', () => {
 	data.clear();
 	localStorage.clear();
 	while (table.rows.length > 0)
-		table.deleteRow(0)
+		table.deleteRow(0);
 });
 
 const importBtn = document.getElementById('importBtn');
@@ -63,16 +62,13 @@ importBtn.addEventListener('change', async () => {
 
 document.getElementById('exportBtn').addEventListener('click', () => {
 	if (data.size) {
-		const textToBLOB = new Blob([localStorage.getItem('data')], { type: 'application/json' });
-		let newLink = document.createElement("a");
-		newLink.download = 'LSJD.json';
-		if (window.webkitURL)
-			newLink.href = window.webkitURL.createObjectURL(textToBLOB);
-		else {
-			newLink.href = window.URL.createObjectURL(textToBLOB);
-			newLink.style.display = "none";
-			document.body.appendChild(newLink);
-		}
-		newLink.click();
+		const link = document.createElement('a');
+		link.download = 'LSJD.json';
+		link.href = URL.createObjectURL(new Blob([localStorage.getItem('data')], { type: 'application/json' }));
+		link.style.display = 'none';
+		document.body.appendChild(link);
+		link.click();
+		link.remove(); // detach from DOM
+		URL.revokeObjectURL(link.href); // remove URL signature from memory
 	}
 });
